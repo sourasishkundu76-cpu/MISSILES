@@ -1,0 +1,6 @@
+{
+  "name": "ARES: Autonomous Radar-Enabled Tracking & Interception Simulator",
+  "description": "Tactical defense simulation featuring autonomous radar sweeping, 3D target tracking, ultrasonic telemetry, and kinetic interception fire control.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

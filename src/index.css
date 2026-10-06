@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --primary-cyan: #00f0ff;
+  --radar-cyan: rgba(0, 240, 255, 0.45);
+  --threat-red: #ff3344;
+  --threat-red-glow: rgba(255, 51, 68, 0.6);
+  --warning-amber: #ffaa00;
+  --military-bg: #030710;
+  --panel-bg: rgba(6, 14, 28, 0.88);
+  --panel-border: rgba(0, 240, 255, 0.25);
+  font-family: 'Share Tech Mono', 'Courier New', Courier, monospace, system-ui;
+}
+
+/* Glassmorphic border tech panels with high-tech corner notches */
+.tech-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.12), inset 0 0 10px rgba(0, 240, 255, 0.05);
+  position: relative;
+}
+
+.tech-panel::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-top: 2px solid var(--primary-cyan);
+  border-left: 2px solid var(--primary-cyan);
+  pointer-events: none;
+}
+
+.tech-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 6px;
+  height: 6px;
+  border-bottom: 2px solid var(--primary-cyan);
+  border-right: 2px solid var(--primary-cyan);
+  pointer-events: none;
+}
+
+/* Red Tech Panel for Threats */
+.tech-panel-threat {
+  background: rgba(30, 8, 12, 0.88);
+  border-color: rgba(255, 51, 68, 0.4);
+  box-shadow: 0 0 15px rgba(255, 51, 68, 0.2);
+}
+.tech-panel-threat::before {
+  border-top-color: #ff3344;
+  border-left-color: #ff3344;
+}
+.tech-panel-threat::after {
+  border-bottom-color: #ff3344;
+  border-right-color: #ff3344;
+}
+
+/* Screen-space targeting brackets */
+.target-bracket {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.1s ease-out;
+  z-index: 25;
+}
+
+.target-bracket-box {
+  border: 1.5px solid var(--threat-red);
+  box-shadow: 0 0 14px var(--threat-red-glow);
+  background: rgba(255, 51, 68, 0.12);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.corner-tl { position: absolute; top:-3px; left:-3px; width:6px; height:6px; border-top:2px solid #fff; border-left:2px solid #fff; }
+.corner-tr { position: absolute; top:-3px; right:-3px; width:6px; height:6px; border-top:2px solid #fff; border-right:2px solid #fff; }
+.corner-bl { position: absolute; bottom:-3px; left:-3px; width:6px; height:6px; border-bottom:2px solid #fff; border-left:2px solid #fff; }
+.corner-br { position: absolute; bottom:-3px; right:-3px; width:6px; height:6px; border-bottom:2px solid #fff; border-right:2px solid #fff; }
+
+/* CRT Scanlines and tactical vignette */
+.scanlines {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.28) 50%),
+              linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* FLIR / Night vision filter */
+.flir-vision {
+  filter: sepia(100%) hue-rotate(80deg) saturate(350%) contrast(140%) brightness(90%);
+}
+
+.thermal-vision {
+  filter: invert(80%) hue-rotate(180deg) saturate(200%) contrast(150%);
+}
+
+/* Animations */
+@keyframes tacticalPulse {
+  0%, 100% { opacity: 0.95; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(1.03); }
+}
+.tactical-pulse {
+  animation: tacticalPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes radarWave {
+  0% { transform: scale(0.1); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+.radar-pulse-ring {
+  animation: radarWave 2.5s infinite linear;
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 10, 20, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.4);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.8);
+}
